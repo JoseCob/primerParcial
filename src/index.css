@@ -94,10 +94,10 @@ nav ul li {
   pointer-events: none;
 }
 
-/*Estilo del botón -> addNote*/
+/*Estilo del botón -> new note*/
 .container-btn{
   display: grid;
-  place-items: end; /*utiliza los estilos justify-content y el align-items a la derecha con un display: grid*/
+  place-items: end; /*utiliza los estilos justify-content y el align-items a la derecha con display: grid*/
 }
 .container-btn button{
   margin: 20px;

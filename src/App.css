@@ -1,0 +1,119 @@
+/*Estilo del modal -> Panel Agregar Nota*/
+.addNote-Modal{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.5);
+    padding: 40px;
+    display: grid;
+    place-items: center; /*utiliza los estilos justify-content y el align-items al centro con display: center*/
+}
+.modalNN{
+    width:500px;
+    min-height: 100px;
+    background: #fff;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 20px;
+}
+.header-modalNN{
+    display:flex; 
+    justify-content: end;
+    align-items: end;
+    padding: 6px;
+    border: 0;
+}
+.header-modalNN button{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin-right: 22px;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    width: 22%;
+    font-size: medium;
+    font-weight: 500;
+}
+.iconbtn-modal{
+    vertical-align: middle;
+    margin-left: 1.8px;
+    font-size:1.2rem !important;
+  }
+.header-modalNN button:hover{
+    opacity: 0.78;
+    cursor: pointer;
+}
+.btnAN-save{
+    color: white;
+    background-color: #3C9099;
+}
+.btnAN-cancel{
+    color: white;
+    background-color: #EF4B4B;
+}
+.tag-modalNN{
+    font-family: 'Times New Roman';
+    font-size: 1.68em;
+    font-weight: 100;
+}
+.btn-container-modalNN{
+    margin-top: 5px;
+    display: flex;
+    justify-content: left;
+    align-items:start;
+    gap: 15px;
+}
+.btn-container-modalNN button{
+    font-family: Arial;
+    font-size: small;
+    padding: 8px;
+    margin: 0;
+    border: 0;
+    border-radius: 6px;
+}
+.btn-list-1NN{background-color: #FFD966;} .btn-list-2NN{background-color: #C7E9B0;} .btn-list-3NN{background-color: #EDC6B1;}
+.btn-list-4NN{background-color: #93BFCF;} .btn-list-5NN{background-color: #F5EBE0;} .btn-list-6NN{background-color: #F6C6EA;}
+.body-modalNN{
+    margin-top: 25px;
+    font-size:xx-large;
+    font-weight: 100;
+    font-family: Arial;
+}
+.container-input-modalNN{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.label-modalNN{color: #BBBBBB;} 
+.input-modalNN{ 
+    margin-top: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #BBBBBB; /* Solo mostrar borde inferior */
+    font-weight: 200;
+    font-size: large;
+    outline: none; /* Quitar el contorno azul predeterminado */
+    transition: border-bottom 0.1s ease; /* Transición suave para el foco */
+}
+.input-modalNN:focus{ 
+    border-bottom: 1px solid #000000; /* Cambiar el borde inferior cuando esté en foco */
+}
+.textarea-modalNN{
+    margin-top: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 100px;
+    border: 0;
+    border-bottom: 1px solid #BBBBBB; /* Solo mostrar borde inferior */
+    font-weight: 100;
+    font-size:x-large;
+    outline: none; /* Quitar el contorno azul predeterminado */
+    resize: none;
+    transition: border-bottom 0.1s ease; /* Transición suave para el foco */
+}
+.textarea-modalNN:focus{ 
+    border-bottom: 1px solid #000000; /* Cambiar el borde inferior cuando esté en foco */
+}
