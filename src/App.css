@@ -127,7 +127,6 @@
     transition: border-bottom 0.1s ease; /* Transición suave para el foco */
     cursor: pointer;
 }
-
 /*Estilo del modal -> Alerta(Eliminar y Borrar Todo)*/
 .alert-modal{
     width: 100vw;
@@ -167,12 +166,24 @@
     border: 0;
     padding: 15px;
     border-radius: 12px;
-    margin: 0 40px 0 40px;
-    font-size: medium !important;
+    margin: 20px 40px 0 40px;
+    font-size: large !important;
+    font-weight: 600;
     color: white;
 }
 .btnAlert-cancel{ background-color: #C80036;}.btnAlert-confirm{background-color: #059212;}
 .btnAlert-cancel:hover{cursor: pointer; opacity: 0.7;}.btnAlert-confirm:hover{cursor: pointer; opacity: 0.7;}
+/*Estilo del modal -> Advertencia(Validación de campos en Agregar Notas)*/
+.header-modal-warning{
+    display: grid;
+    place-items: center;
+    text-align: center;
+    background-color: #FFF3DA;
+    color: rgb(255, 128, 17);
+    font-size: 1.2em;
+    border-radius: 5px;
+}
+.btnAlert-Accept{background-color: #F1C27B;}.btnAlert-Accept:hover{background-color: #FEBE8C; cursor: pointer;}
 
 /*Estilo para los paneles de las notas*/
 .title-container{

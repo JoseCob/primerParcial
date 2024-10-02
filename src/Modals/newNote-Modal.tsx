@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { z } from 'zod';
+import Alert_Modal from './Warning-Modal'; //Importamos el modal de advertencia
 
 //Interfaz --> props para el modal
 interface ModalProps{
@@ -6,19 +8,50 @@ interface ModalProps{
     onSave: (note: { title: string; description: string; category: string; panel: number }) => void;
 }
 
+//Esquema de validación con Zod
+const noteSchema = z.object({
+    title: z.string().min(1, 'El título es obligatorio'),
+    description: z.string().min(1, 'La nota es obligatoria'),
+    category: z.string(),
+    panel: z.number(),
+});  
+
 //Renderizamos los elementos del modal --> Panel de Agregar notas
-const NewNote_Modal: React.FC<ModalProps> =({onClose, onSave }) => {
+const NewNote_Modal: React.FC<ModalProps> =({ onClose, onSave }) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
     const [panel, setPanel] = useState(1);
+    const [isAlertVisible, setAlertVisible] = useState(false); //Estado para mostrar el modal de advertencia
+
+    // Función para cerrar la alerta
+    const handleAcceptAlert = () => {
+        setAlertVisible(false); //Cerramos el modal de advertencia
+    };
 
     //Función para el botón Save
     const handleSave = (event: React.MouseEvent<HTMLButtonElement>) => {
         console.log('¡Botón Guardar Nota Clickeado!', event);
-        onSave({ title, description, category, panel });
-        onClose(); //Cerramos el modal después de guardar
-    }
+        try {
+            // Validamos los datos usando Zod
+            const validatedNote = noteSchema.parse({
+              title,
+              description,
+              category: category || 'Sin categoría', //Si está vacío, asignamos "Sin categoría" por defecto
+              panel,
+            });
+      
+            //Si pasa la validación, guardamos la nota y cerramos el modal
+            onSave(validatedNote);
+            onClose();
+        } catch (error) {
+            if (error instanceof z.ZodError) {
+                console.log('Errores de validación:', error.errors);
+                //Si hay errores de validación, mostramos el modal de advertencia
+                setAlertVisible(true);
+            }
+        }
+    };
 
     //Función para el botón Save
     const handleClose = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -54,17 +87,19 @@ const NewNote_Modal: React.FC<ModalProps> =({onClose, onSave }) => {
                     <div className='container-input-modalNN'>
                         <input className='input-modalNN' type='text'  value={category} onChange={(e) => setCategory(e.target.value)} placeholder='+ Sin Especificar'/>
                     </div>
-                    <label className='label-modalNN'>Título</label>
+                    <label className='label-modalNN'>Título *</label>
                     <div className='container-input-modalNN'>
                         <input className='input-modalNN' type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Añadir Título' autoFocus/>
                     </div>
-                    <label className='label-modalNN'>Nota</label>
+                    <label className='label-modalNN'>Nota *</label>
                     <div className='container-input-modalNN'>
                         <textarea className='textarea-modalNN' value={description} onChange={(e) => setDescription(e.target.value)} placeholder='Añadir Nota'></textarea>
                     </div>
                 </div>
             </div>
-        </div>
+            {/* Modal de advertencia si hay errores */}
+            {isAlertVisible && <Alert_Modal Accept={handleAcceptAlert} />}
+        </div>       
     );
 };
 

@@ -110,13 +110,11 @@ function App() {
     setConfirmAction(() => action); // Guardamos la acción que se debe confirmar
     setAlertVisible(true); // Mostramos el modal de confirmación
   };
-
   //Función para confirmar la eliminación
   const confirmDelete = () => {
     confirmAction(); // Ejecutamos la acción guardada
     setAlertVisible(false); // Cerramos el modal de confirmación
   };
-
   //Función para cerrar el modal de confirmación
   const closeAlert = () => {
     setAlertVisible(false); // Cerramos el modal de confirmación
