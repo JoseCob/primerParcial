@@ -120,3 +120,26 @@ nav ul li {
   margin-left: 5px;
   font-size:xx-large !important;
 }
+
+/*Diseño para teléfonos móviles*/
+@media only screen and (max-width: 767px){
+  h1{
+    font-size: 1.5em;
+  }
+  h2{
+    font-size: 1em;
+  }
+  h3{
+    font-size: .85em;
+  }
+  .imgNav{
+    width: 45px;
+    height: 45px;
+  }
+  .container-btn button{
+    font-size:medium;
+  }
+  .iconbtn{
+    font-size:x-large !important;
+  }
+}

@@ -9,6 +9,7 @@
     padding: 40px;
     display: grid;
     place-items: center; /*utiliza los estilos justify-content y el align-items al centro con display: center*/
+    z-index: 1;
 }
 .modalNN{
     width:500px;
@@ -40,18 +41,18 @@
     vertical-align: middle;
     margin-left: 1.8px;
     font-size:1.2rem !important;
-  }
+}
 .header-modalNN button:hover{
     opacity: 0.78;
     cursor: pointer;
 }
 .btnAN-save{
     color: white;
-    background-color: #3C9099;
+    background-color: #365E32;
 }
 .btnAN-cancel{
     color: white;
-    background-color: #EF4B4B;
+    background-color: #C7253E;
 }
 .tag-modalNN{
     font-family: 'Times New Roman';
@@ -97,8 +98,7 @@
     font-size: large;
     outline: none; /* Quitar el contorno azul predeterminado */
     transition: border-bottom 0.1s ease; /* Transición suave para el foco */
-}
-.input-modalNN:focus{ 
+}.input-modalNN:focus{ 
     border-bottom: 1px solid #000000; /* Cambiar el borde inferior cuando esté en foco */
 }
 .textarea-modalNN{
@@ -113,7 +113,232 @@
     outline: none; /* Quitar el contorno azul predeterminado */
     resize: none;
     transition: border-bottom 0.1s ease; /* Transición suave para el foco */
-}
-.textarea-modalNN:focus{ 
+}.textarea-modalNN:focus{ 
     border-bottom: 1px solid #000000; /* Cambiar el borde inferior cuando esté en foco */
+}
+.select-modalNN{
+    margin-bottom: 20px;
+    width: 24%;
+    border: 0;
+    color: #BBBBBB;
+    font-weight: 200;
+    font-size:x-large;
+    outline: none; /* Quitar el contorno azul predeterminado */
+    transition: border-bottom 0.1s ease; /* Transición suave para el foco */
+    cursor: pointer;
+}
+
+/*Estilo del modal -> Alerta(Eliminar y Borrar Todo)*/
+.alert-modal{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.5);
+    padding: 0;
+    display: grid;
+    place-items: center; /*utiliza los estilos justify-content y el align-items al centro con display: center*/
+    z-index: 1;
+}
+.modalAlert{
+    width:600px;
+    min-height: 100px;
+    background: #fff;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.header-modalAlert{
+    display: grid;
+    place-items: center;
+    background-color: #B8001F;
+    color: white;
+    font-size: 1.2em;
+    border-radius: 5px;
+}
+.body-modalAlert{
+    display: grid;
+    place-items: center;
+    margin-bottom: 15px;
+    font-size: large;
+}
+.btn-alert-modal button {
+    border: 0;
+    padding: 15px;
+    border-radius: 12px;
+    margin: 0 40px 0 40px;
+    font-size: medium !important;
+    color: white;
+}
+.btnAlert-cancel{ background-color: #C80036;}.btnAlert-confirm{background-color: #059212;}
+.btnAlert-cancel:hover{cursor: pointer; opacity: 0.7;}.btnAlert-confirm:hover{cursor: pointer; opacity: 0.7;}
+
+/*Estilo para los paneles de las notas*/
+.title-container{
+    font-size: 3.2em;
+    font-weight: 300;
+    padding: 20px;
+    margin: 0;
+}
+.panel-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 20px;
+    gap: 0;
+    margin: 0;
+    background: white;
+}
+.panel-content{
+    border: 0;
+    border-right: groove;
+}
+.title-panel{
+    display: grid;
+    place-items: center;
+}
+.container-btn-panel{
+    display: grid;
+    place-items: end;
+    margin: 0 10px 0 0;
+    position: relative;
+}
+.btn-delete-all{
+    margin: 0;
+    padding: 7.5px;
+    background-color: #C84361;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+}.btn-delete-all:hover{
+    background-color: #EF7B7B;
+    cursor: pointer;
+}
+
+/*Estilo para las notas*/
+.container-note{
+    display: grid;
+    place-items: center;
+}
+.card-note{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0 10px 0 10px;
+    width: 300px;
+}
+.body-note{
+    margin-top: 10px;
+    padding: 20px;
+    border-radius: 6px;
+    line-height: 1.5;
+    box-shadow: 5px 8px 10px 0 #d3d3d3;
+}
+.header-note{
+    position: relative;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    margin-bottom: 5px;
+}
+.tooltip .tooltip-btnNote{ /*Estilo Tooltip*/
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 120%;
+    left: auto;
+    margin-left: -75px;
+}
+.tooltip .tooltip-btnNote::after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: auto;
+    margin-left: -8px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+.tooltip:hover .tooltip-btnNote{
+    visibility: visible;
+}
+.btn-note-edit{
+    margin: 0;
+    padding: 7.5px;
+    background-color: #295F98;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    margin-right: 12px;
+}.btn-note-edit:hover{
+    background-color: #82A0D8;
+    cursor: pointer;
+}
+.btn-note-delete{
+    margin: 0;
+    padding: 7.5px;
+    background-color: #C84361;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+}.btn-note-delete:hover{
+    background-color: #EF7B7B;
+    cursor: pointer;
+}
+.text-note{
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Limita a 4 líneas */
+    line-clamp: 4; /* Propiedad estándar (futura compatibilidad) */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*Diseño para teléfonos móviles*/
+@media only screen and (max-width: 767px){
+    .addNote-Modal{
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        margin-left: -10px;
+    }
+    .modalNN{
+        width: 380px;
+    }
+    .header-modalNN{
+        padding: 3px;
+    }
+    .header-modalNN button{
+        width: 24%;
+        font-size: small;
+    }
+    .iconbtn-modal{
+        vertical-align: middle;
+        margin-left:1.2px;
+        font-size:1rem !important;
+    }
+    .tag-modalNN{
+        font-size: 1.4em;
+    }
+    .btn-container-modalNN{
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+    .select-modalNN{
+        width: 26%;
+    }
+}
+
+/*Diseño para laptos y tabletas*/
+@media only screnn and (min-width:768px) and (max-width: 1024px){
+    .addNote-Modal{
+        width: 98%;
+    }
 }
