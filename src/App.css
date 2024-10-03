@@ -29,18 +29,18 @@
 }
 .header-modalNN button{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
-    margin-right: 22px;
+    margin-right: 18px;
     border: 0;
     padding: 8px;
     border-radius: 8px;
-    width: 22%;
+    width: 23.5%;
     font-size: medium;
     font-weight: 500;
 }
 .iconbtn-modal{
     vertical-align: middle;
-    margin-left: 1.8px;
-    font-size:1.2rem !important;
+    margin-top: -2px;
+    margin-left: 2px;
 }
 .header-modalNN button:hover{
     opacity: 0.78;
@@ -89,7 +89,7 @@
 }
 .label-modalNN{color: #BBBBBB;} 
 .input-modalNN{ 
-    margin-top: 5px;
+    margin-top: 10px;
     margin-bottom: 20px;
     width: 100%;
     border: 0;
@@ -196,13 +196,16 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     padding: 20px;
-    gap: 0;
+    gap: 12px;
     margin: 0;
     background: white;
 }
 .panel-content{
-    border: 0;
-    border-right: groove;
+    border: groove;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    padding: 0 0 25px 0;
 }
 .title-panel{
     display: grid;
@@ -213,14 +216,19 @@
     place-items: end;
     margin: 0 10px 0 0;
     position: relative;
+    opacity: 0; /*Lo oculta*/
+    transition: opacity 0.3s ease; /* Animación suave */
+}
+.panel-content:hover .container-btn-panel {
+    opacity: 1; /* Mostrar cuando se pasa el mouse por el panel */
 }
 .btn-delete-all{
     margin: 0;
-    padding: 7.5px;
+    padding: 8px;
     background-color: #C84361;
     color: white;
     border: 0;
-    border-radius: 10px;
+    border-radius: 80px;
 }.btn-delete-all:hover{
     background-color: #EF7B7B;
     cursor: pointer;
@@ -240,11 +248,15 @@
     width: 300px;
 }
 .body-note{
-    margin-top: 10px;
+    margin-top: 25px;
     padding: 20px;
-    border-radius: 6px;
+    border: 0;
     line-height: 1.5;
-    box-shadow: 5px 8px 10px 0 #d3d3d3;
+    box-shadow: 6.5px 10px 6.5px 2.5px #d3d3d3;
+    /* Añadir tamaño fijo */
+    min-width: 250px; /* Altura mínima para todas las notas */
+    max-width: 250px; /* Altura máxima para todas las notas */
+    min-height:225px;
 }
 .header-note{
     position: relative;
@@ -252,6 +264,12 @@
     justify-content: end;
     align-items: end;
     margin-bottom: 5px;
+    opacity: 0; /* Ocultar los botones */
+    transition: opacity 0.3s ease; /* Transición suave */
+}
+/* Mostrar los botones al hacer hover sobre el cuerpo de la nota */
+.body-note:hover .header-note {
+    opacity: 1;
 }
 .tooltip .tooltip-btnNote{ /*Estilo Tooltip*/
     visibility: hidden;
@@ -282,11 +300,11 @@
 }
 .btn-note-edit{
     margin: 0;
-    padding: 7.5px;
+    padding: 8px;
     background-color: #295F98;
     color: white;
     border: 0;
-    border-radius: 10px;
+    border-radius: 80px;
     margin-right: 12px;
 }.btn-note-edit:hover{
     background-color: #82A0D8;
@@ -294,19 +312,19 @@
 }
 .btn-note-delete{
     margin: 0;
-    padding: 7.5px;
+    padding: 8px;
     background-color: #C84361;
     color: white;
     border: 0;
-    border-radius: 10px;
+    border-radius: 80px;
 }.btn-note-delete:hover{
     background-color: #EF7B7B;
     cursor: pointer;
 }
 .text-note{
     display: -webkit-box;
-    -webkit-line-clamp: 4; /* Limita a 4 líneas */
-    line-clamp: 4; /* Propiedad estándar (futura compatibilidad) */
+    -webkit-line-clamp: 1; /* Limita a 4 líneas */
+    line-clamp: 1; /* Propiedad estándar (futura compatibilidad) */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;

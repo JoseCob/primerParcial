@@ -68,7 +68,7 @@ const NewNote_Modal: React.FC<ModalProps> =({ onClose, onSave }) => {
                         <span className="material-symbols-outlined iconbtn-modal">save</span>
                     </button>
                     <button className="btnAN-cancel" onClick={handleClose}>Cancelar
-                        <span className="material-symbols-outlined iconbtn-modal">close</span>
+                        <span className="material-symbols-outlined iconbtn-modal">cancel</span>
                     </button>
                 </div>
 

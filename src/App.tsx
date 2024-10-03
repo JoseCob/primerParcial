@@ -172,21 +172,25 @@ function App() {
                         <div className='tooltip'>
                           <span className='tooltip-btnNote'>Editar</span>
                           <button className='btn-note-edit'>
-                            <span className="material-symbols-outlined">stylus</span>
+                            <span className="material-symbols-outlined">edit_note</span>
                           </button>
                         </div>
                         <div className='tooltip'>
                           <span className='tooltip-btnNote'>Eliminar</span>
                           <button className='btn-note-delete' onClick={() => showAlert(() => handleDeleteNote(panel, index))}>
-                            <span className='material-symbols-outlined'>close</span>
+                            <span className='material-symbols-outlined'>delete</span>
                           </button>
                         </div>
                       </div>
-                      <h3>{note.title}</h3>
+                      <div className='text-note'>
+                        <h3>{note.title}</h3>
+                      </div>
                       <div className='text-note'>
                         <p>{note.description}</p>
                       </div>
-                      <p>{note.category}</p>
+                      <div className='text-note'>
+                        <p>{note.category}</p>
+                      </div>
                     </div>
                   </div>
                 ))}

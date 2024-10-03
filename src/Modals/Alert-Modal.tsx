@@ -21,10 +21,10 @@ const Alert_Modal: React.FC<ModalProps> =({closeAlert, confirmDelete }) => {
                     <p>Todo el contenido se perdera</p>
                     <div className='btn-alert-modal'>
                         <button className="btnAlert-cancel" onClick={closeAlert}>Cancelar
-                            <span className="material-symbols-outlined iconbtn-modal">close</span>
+                            <span className="material-symbols-outlined iconbtn-modal">cancel</span>
                         </button>
                         <button className="btnAlert-confirm" onClick={confirmDelete}>Confirmar
-                            <span className="material-symbols-outlined iconbtn-modal">check</span>
+                            <span className="material-symbols-outlined iconbtn-modal">check_circle</span>
                         </button>
                     </div>
                 </div>
