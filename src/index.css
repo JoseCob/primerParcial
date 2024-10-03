@@ -55,8 +55,9 @@ h2{
 
 h3{
   font-weight: 500;
-  font-size: 1.5em;
+  font-size: 1.2em;
   margin: 0;
+  text-align: center;
 }
 
 /*Estilo del navbar*/

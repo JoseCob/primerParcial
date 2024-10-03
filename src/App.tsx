@@ -262,29 +262,32 @@ function App() {
                <div className={`expanded-view ${isExpanded ? 'container-note' : ''}`}>
                 {notes.map((note, index) => (
                   <div className='card-note' key={index}>
-                    <div className='body-note' style={{ backgroundColor: note.backgroundColor }}>
-                      <div className='header-note'>
-                        <div className='tooltip'>
-                          <span className='tooltip-btnNote'>Editar</span>
-                          <button className='btn-note-edit' onClick={() => handleeditNote(note)}>
-                            <span className="material-symbols-outlined">edit_note</span>
-                          </button>
+                    <div className='tooltip-note'>
+                      <h3 className='tooltip-card'>{note.title}</h3>
+                      <div className='body-note' style={{ backgroundColor: note.backgroundColor }}>
+                        <div className='header-note'>
+                          <div className='tooltip'>
+                            <span className='tooltip-btnNote'>Editar</span>
+                            <button className='btn-note-edit' onClick={() => handleeditNote(note)}>
+                              <span className="material-symbols-outlined">edit_note</span>
+                            </button>
+                          </div>
+                          <div className='tooltip'>
+                            <span className='tooltip-btnNote'>Eliminar</span>
+                            <button className='btn-note-delete' onClick={() => showAlert(() => handleDeleteNote(panel, index))}>
+                              <span className='material-symbols-outlined'>delete</span>
+                            </button>
+                          </div>
                         </div>
-                        <div className='tooltip'>
-                          <span className='tooltip-btnNote'>Eliminar</span>
-                          <button className='btn-note-delete' onClick={() => showAlert(() => handleDeleteNote(panel, index))}>
-                            <span className='material-symbols-outlined'>delete</span>
-                          </button>
+                        <div className='text-note'>
+                          <h3>{note.title}</h3>
                         </div>
-                      </div>
-                      <div className='text-note'>
-                        <h3>{note.title}</h3>
-                      </div>
-                      <div className='text-note'>
-                        <p>{note.description}</p>
-                      </div>
-                      <div className='text-note'>
-                        <p>{note.category}</p>
+                        <div className='text-note'>
+                          <p className='text-small-note'>{note.description}</p>
+                        </div>
+                        <div className='text-note'>
+                          <p className='text-small-note'>{note.category}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
