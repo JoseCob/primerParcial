@@ -259,7 +259,7 @@ function App() {
               </div>
             )}
             {notes.length > 0 && (
-               <div className={`container-note ${isExpanded ? 'expanded-view' : ''}`}>
+               <div className={`expanded-view ${isExpanded ? 'container-note' : ''}`}>
                 {notes.map((note, index) => (
                   <div className='card-note' key={index}>
                     <div className='body-note' style={{ backgroundColor: note.backgroundColor }}>

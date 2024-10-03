@@ -240,17 +240,6 @@
     height: 300px;
     width: 300px;
     margin: 0 auto;
-
-    /*
-    display: grid;
-    place-items: center;
-    */
-    /*
-        position: relative;
-        height: 300px;
-        width: 300px; 
-        margin: 0 auto;
-    */
 }
 .card-note{
     display: flex;
@@ -258,7 +247,6 @@
     align-items: center;
     position: relative; /* Aseguramos que cada nota esté en su lugar en el panel */
     margin: 0 10px 0 10px;
-    width: 300px;
 }
 .body-note{
     margin-top: 25px;
