@@ -246,6 +246,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative; /* Aseguramos que cada nota esté en su lugar en el panel con su tooltip */
     margin: 0 10px 0 10px;
 }
 .body-note{
