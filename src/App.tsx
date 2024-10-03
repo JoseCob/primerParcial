@@ -25,7 +25,8 @@ function App() {
   //Estado para manejar la visibilidad del modal al iniciar la página
   const [isModalVisible, setModalVisible] = useState(false);//oculta el modal de agregar notas
   const [isAlertVisible, setAlertVisible] = useState(false);//oculta el modal de confirmación
-  const [isEditModalVisible, setEditModalVisible] = useState(false); // Oculta el modal de edición
+  const [isEditModalVisible, setEditModalVisible] = useState(false);//Oculta el modal de edición al cargar la página
+  const [isExpanded, setExpanded] = useState(true);//Muestra el diseño expandido al renderizar la página
   //Almacena la función que debe ejecutarse después de confirmar la acción
   const [confirmAction, setConfirmAction] = useState<() => void>(() => {})
 
@@ -199,6 +200,11 @@ function App() {
     setAlertVisible(false); // Cerramos el modal de confirmación
   };
 
+  // Nueva función para manejar el estado expandido
+  const handleExpandToggle = () => {
+    setExpanded(!isExpanded);
+  };
+
   return (
     <>
       {/*AppBar de la página*/}
@@ -253,7 +259,7 @@ function App() {
               </div>
             )}
             {notes.length > 0 && (
-              <div className='container-note'>
+               <div className={`container-note ${isExpanded ? 'expanded-view' : ''}`}>
                 {notes.map((note, index) => (
                   <div className='card-note' key={index}>
                     <div className='body-note' style={{ backgroundColor: note.backgroundColor }}>
@@ -283,6 +289,14 @@ function App() {
                     </div>
                   </div>
                 ))}
+                  {/* Botón para alternar la vista expandida */}
+                  <div className='container-expand'>
+                    <button className='btn-expand' onClick={handleExpandToggle}>
+                      <span className="material-symbols-outlined">
+                        {isExpanded ? 'arrow_drop_down' : 'arrow_drop_up'}
+                      </span>
+                    </button>
+                  </div>
               </div>
             )}
           </div>
