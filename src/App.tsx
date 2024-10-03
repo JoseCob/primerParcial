@@ -1,34 +1,34 @@
-import { useState } from 'react'
-import './App.css'
+import { useState, useEffect } from 'react';
+import './App.css';
 import NewNote_Modal from './Modals/newNote-Modal';//Componente del modal --> Panel de Agregar notas
 import Alert_Modal from './Modals/Alert-Modal';//Componente del modal de alerta
-import EditNote_Modal from './Modals/editNote-Modal'; // Componente del modal para editar notas
+import EditNote_Modal from './Modals/editNote-Modal';//Componente del modal para editar notas
 
-//Interfaz para las notas(props)
+//Interfaz para las notas (props)
 interface Note {
   title: string;
   description: string;
   category: string;
   panel: number;
-  backgroundColor: string; //Agregamos el color de fondo a las notas
+  backgroundColor: string;//Agregamos el color de fondo a las notas
 }
 
-// Función para generar un color pastel aleatorio
+//Función para generar un color pastel aleatorio
 const generateRandomPastelColor = () => {
   const r = Math.floor(Math.random() * 106 + 150);//Valor entre 150 y 255
-  const g = Math.floor(Math.random() * 106 + 150); 
+  const g = Math.floor(Math.random() * 106 + 150);
   const b = Math.floor(Math.random() * 106 + 150);
   return `rgb(${r}, ${g}, ${b})`;
 };
 
 function App() {
   //Estado para manejar la visibilidad del modal al iniciar la página
-  const [isModalVisible, setModalVisible] = useState(false);//oculta el modal de agregar notas
-  const [isAlertVisible, setAlertVisible] = useState(false);//oculta el modal de confirmación
+  const [isModalVisible, setModalVisible] = useState(false);//Oculta el modal de agregar notas
+  const [isAlertVisible, setAlertVisible] = useState(false);//Oculta el modal de confirmación
   const [isEditModalVisible, setEditModalVisible] = useState(false);//Oculta el modal de edición al cargar la página
   const [isExpanded, setExpanded] = useState(true);//Muestra el diseño expandido al renderizar la página
   //Almacena la función que debe ejecutarse después de confirmar la acción
-  const [confirmAction, setConfirmAction] = useState<() => void>(() => {})
+  const [confirmAction, setConfirmAction] = useState<() => void>(() => {});
 
   //Estados para almacenar las notas de cada panel
   const [panel1Notes, setPanel1Notes] = useState<Note[]>([]);
@@ -36,18 +36,38 @@ function App() {
   const [panel3Notes, setPanel3Notes] = useState<Note[]>([]);
   const [panel4Notes, setPanel4Notes] = useState<Note[]>([]);
 
-  // Estado para la nota que está siendo editada
+  //Estado para la nota que está siendo editada
   const [noteBeingEdited, setNoteBeingEdited] = useState<Note | null>(null);
+
+  //Cargar las notas desde localStorage cuando el componente se monte
+  useEffect(() => {
+    const storedPanel1Notes = localStorage.getItem('panel1Notes');
+    const storedPanel2Notes = localStorage.getItem('panel2Notes');
+    const storedPanel3Notes = localStorage.getItem('panel3Notes');
+    const storedPanel4Notes = localStorage.getItem('panel4Notes');
+
+    if (storedPanel1Notes) setPanel1Notes(JSON.parse(storedPanel1Notes));
+    if (storedPanel2Notes) setPanel2Notes(JSON.parse(storedPanel2Notes));
+    if (storedPanel3Notes) setPanel3Notes(JSON.parse(storedPanel3Notes));
+    if (storedPanel4Notes) setPanel4Notes(JSON.parse(storedPanel4Notes));
+  }, []);
+
+  //Guardar las notas en localStorage cuando cambien
+  useEffect(() => {
+    localStorage.setItem('panel1Notes', JSON.stringify(panel1Notes));
+    localStorage.setItem('panel2Notes', JSON.stringify(panel2Notes));
+    localStorage.setItem('panel3Notes', JSON.stringify(panel3Notes));
+    localStorage.setItem('panel4Notes', JSON.stringify(panel4Notes));
+  }, [panel1Notes, panel2Notes, panel3Notes, panel4Notes]);
 
   //Función del botón new note, para mostrar el modal al hacer clic
   const handleaddNote = (event: React.MouseEvent<HTMLButtonElement>) => {
-    console.log('¡Botón Agregar Notas Clickeado!', event);
-    setModalVisible(true);//Muestra el modal al hacer clic
-  }
+    setModalVisible(true), event; //Muestra el modal al hacer clic
+  };
 
   //Función que se ejecuta cuando se guarda una nueva nota
   const handleSaveNote = (newNote: Omit<Note, 'backgroundColor'>) => {
-    const noteWithColor = { ...newNote, backgroundColor: generateRandomPastelColor() }; // Generamos color al guardar
+    const noteWithColor = { ...newNote, backgroundColor: generateRandomPastelColor() };//Generamos color al guardar
     switch (newNote.panel) {
       case 1:
         setPanel1Notes([...panel1Notes, noteWithColor]);
@@ -66,16 +86,16 @@ function App() {
     }
   };
 
-  // Función para abrir el modal de edición y cargar los datos de la nota
+  //Función para abrir el modal de edición y cargar los datos de la nota
   const handleeditNote = (note: Note) => {
-    setNoteBeingEdited(note); // Establece la nota que se va a editar
-    setEditModalVisible(true); // Muestra el modal de edición
+    setNoteBeingEdited(note);//Establece la nota que se va a editar
+    setEditModalVisible(true);//Muestra el modal de edición
   };
 
-  // Función que se ejecuta cuando se actualiza una nota
+  //Función que se ejecuta cuando se actualiza una nota
   const handleUpdateNote = (updatedNote: Note) => {
     const moveNoteToNewPanel = (oldPanel: number, newPanel: number) => {
-      // Eliminar la nota del panel original
+      //Eliminar la nota del panel original
       switch (oldPanel) {
         case 1:
           setPanel1Notes(panel1Notes.filter(note => note !== noteBeingEdited));
@@ -92,8 +112,8 @@ function App() {
         default:
           break;
       }
-    
-      // Añadir la nota al nuevo panel
+
+      //Añadir la nota al nuevo panel
       switch (newPanel) {
         case 1:
           setPanel1Notes([...panel1Notes, updatedNote]);
@@ -111,14 +131,14 @@ function App() {
           break;
       }
     };
-  
-    // Si el panel ha cambiado, mover la nota al nuevo panel
+
+    //Si el panel ha cambiado, mover la nota al nuevo panel
     if (noteBeingEdited && updatedNote.panel !== noteBeingEdited.panel) {
       moveNoteToNewPanel(noteBeingEdited.panel, updatedNote.panel);
     } else {
-      // Si el panel no cambió, actualizar la nota en el mismo panel
+      //Si el panel no cambió, actualizar la nota en el mismo panel
       const updateNotes = (notes: Note[]) => notes.map(note => note === noteBeingEdited ? updatedNote : note);
-      
+
       switch (updatedNote.panel) {
         case 1:
           setPanel1Notes(updateNotes(panel1Notes));
@@ -136,10 +156,11 @@ function App() {
           break;
       }
     }
-  
-    setEditModalVisible(false); // Oculta el modal de edición
-    setNoteBeingEdited(null);   // Limpia el estado de la nota editada
+
+    setEditModalVisible(false);//Oculta el modal de edición
+    setNoteBeingEdited(null);//Limpia el estado de la nota editada
   };
+
   //Función para borrar todas las notas de un panel
   const handleDeleteAll = (panel: number) => {
     switch (panel) {
@@ -179,28 +200,30 @@ function App() {
         break;
     }
   };
-  
-  //Función para cerrar el modal (se la pasaremos al modal del newNote-Modal.tsx)
+
+  //Función para cerrar el modal
   const handleCloseModal = () => {
-    setModalVisible(false);//Cierra el modal al hacer clic
+    setModalVisible(false); //Cierra el modal al hacer clic
   };
 
   //Función para mostrar el modal de confirmación y establecer la acción a confirmar
   const showAlert = (action: () => void) => {
-    setConfirmAction(() => action); // Guardamos la acción que se debe confirmar
-    setAlertVisible(true); // Mostramos el modal de confirmación
-  };
-  //Función para confirmar la eliminación
-  const confirmDelete = () => {
-    confirmAction(); // Ejecutamos la acción guardada
-    setAlertVisible(false); // Cerramos el modal de confirmación
-  };
-  //Función para cerrar el modal de confirmación
-  const closeAlert = () => {
-    setAlertVisible(false); // Cerramos el modal de confirmación
+    setConfirmAction(() => action);//Guardamos la acción que se debe confirmar
+    setAlertVisible(true);//Mostramos el modal de confirmación
   };
 
-  // Nueva función para manejar el estado expandido
+  //Función para confirmar la eliminación
+  const confirmDelete = () => {
+    confirmAction();//Ejecutamos la acción guardada
+    setAlertVisible(false);//Cerramos el modal de confirmación
+  };
+
+  //Función para cerrar el modal de confirmación
+  const closeAlert = () => {
+    setAlertVisible(false);//Cerramos el modal de confirmación
+  };
+
+  //Función para manejar el estado expandido
   const handleExpandToggle = () => {
     setExpanded(!isExpanded);
   };
